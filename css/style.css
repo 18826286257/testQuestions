@@ -49,7 +49,7 @@ img { width:100%; }
 .acea-row.row-between-wrapper{align-items:center;justify-content:space-between;}
 
 /********** 头部 **********/
-#dy_body { background:#f5f8f9; height:auto; }
+#dy_body { background:#f5f8f9; height:auto; min-width:1160px; }
 #dy_body .dy-header { width:100%; background:#fff; z-index:500; overflow:hidden; }
 #dy_body .dy-header .header-content { width:1160px; margin:0px auto; height:100px; overflow:hidden; }
 #dy_body .dy-header .header-content .header-logo { width:105px; margin:35px 0px; }
