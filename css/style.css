@@ -77,14 +77,17 @@ img { width:100%; }
 /********** banner部分 **********/
 #dy_body .dy-banner { width:1160px; height:278px; margin:0px auto; }
 #dy_body .dy-banner .content-left { width:560px; height:100%; background:#fff; padding:5px; }
-#dy_body .dy-banner .content-left .swiper-container {height:100%}
-#dy_body .dy-banner .content-left .swiper-container .swiper-wrapper { width:100%; }
-#dy_body .dy-banner .content-left .swiper-container .swiper-wrapper .swiper-slide { width:100%; height:100% }
-#dy_body .dy-banner .content-left .swiper-container .swiper-wrapper .swiper-slide img { width:100%; height:auto }
-#dy_body .dy-banner .content-left .swiper-container .swiper-pagination span { cursor:pointer; display:inline-block; *display:inline; zoom:1; width:5px; height:5px; margin:5px; background:#c0c4c6; border-radius:0; overflow:hidden; }
-#dy_body .dy-banner .content-left .swiper-container .swiper-pagination span.swiper-pagination-bullet-active { background:#fff; width:8px; height:8px; }
-#dy_body .dy-banner .content-left .swiper-container .swiper-button-next { height:22px; }
-#dy_body .dy-banner .content-left .swiper-container .swiper-button-prev { height:22px; }
+#dy_body .dy-banner .content-left .banner-box { width:100%; height:100%; overflow: hidden; position:relative; }
+#dy_body .dy-banner .content-left .banner-box .banner-content { width:100%; height:100%; }
+#dy_body .dy-banner .content-left .banner-box .banner-content ul { width:100%; height:100%; }
+#dy_body .dy-banner .content-left .banner-box .banner-content ul li {width:100%; height:100%; position:relative; overflow:hidden; }
+#dy_body .dy-banner .content-left .banner-box .banner-content ul li img { display:block;width:100%; height:100%;}
+#dy_body .dy-banner .content-left .banner-box .banner-list { position:absolute; right:40%; bottom:14px;}
+#dy_body .dy-banner .content-left .banner-box .banner-list ul li { float:left; width:8px; height:8px; overflow: hidden; margin:4px 5px 0px; background:#c1c4c6;text-indent: 100px; cursor:pointer;}
+#dy_body .dy-banner .content-left .banner-box .banner-list ul .on { background:#fff; width:10px; height:12px;  margin:0px 5px 0px }
+#dy_body .dy-banner .content-left .banner-box .banner-direction span {position:absolute;color:#fff;background:#03060e; width:25px; height:35px; top:57%; font-family: "宋体"; line-height:35px; font-size:20px; margin-top:-40px; text-align: center;cursor: pointer;}
+#dy_body .dy-banner .content-left .banner-box .banner-direction .prev{left: 10px;}
+#dy_body .dy-banner .content-left .banner-box .banner-direction .next{right: 10px;}
 #dy_body .dy-banner .content-right { width:560px; height:100%; background:#fff; padding:5px; }
 #dy_body .dy-banner .content-right .right-header { width:100%; height:70px; border-bottom:1px solid #efeff0; }
 #dy_body .dy-banner .content-right .right-header .left { margin-left:50px; }
