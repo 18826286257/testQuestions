@@ -1,3 +1,97 @@
+var current = 0;
+var $bannerBox = $(".banner-box");
+var $bannerContent = $(".banner-content ul li");
+var $bannerList = $(".banner-list ul");
+var $bannerDirection = $(".banner-direction");
+var $length = $bannerContent.length;
+var timer;
+var urlMonth = 'https://edu.telking.com/api/?type=month';
+var urlWeek = 'https://edu.telking.com/api/?type=week';
+window.onload = function(){
+	var str = "";
+	for(var i=0;i<$length;i++){
+		if(i==0){
+			str +="<li class='on'>"+(i+1)+"</li>";
+		}else{
+			str += "<li>"+(i+1)+"</li>";
+		}
+	}
+	$bannerList.html(str);
+	timer = setInterval(playGo,1000);
+	//鼠标经过移开图片停止轮播，鼠标移开恢复轮播
+	for(var k=0;k<$length;k++){
+		$($bannerContent[k]).mouseover(function(){
+			clearInterval(timer);
+		});
+		$($bannerContent[k]).mouseout(function(){
+			timer = setInterval(playGo,1000);
+		});
+	}
+	//鼠标经过移开next,prev停止轮播，鼠标移开恢复轮播
+	for(var p=0;p<$bannerDirection.children().length;p++){
+		$($bannerDirection.children()[p]).mouseover(function(){
+			clearInterval(timer);
+		});
+		$($bannerDirection.children()[p]).mouseout(function(){
+			timer = setInterval(playGo,1000);
+		});
+	}
+	//鼠标经过分页器，进行切换图片
+	for(var u =0;u<$length;u++){
+		$($bannerList.children()[u]).mouseover(function(){
+			clearInterval(timer);
+			for(var j=0;j<$length;j++){
+				$($bannerContent[j]).css('display','none')
+				$($bannerList.children()[j]).removeClass('on');
+			}
+			$(this).addClass('on');
+			$($bannerContent[$(this).text()-1]).css('display','block');
+			current = $(this).text();
+		});
+		$($bannerList.children()[u]).mouseout(function(){
+			timer = setInterval(playGo,1000);
+		});
+	}
+	//点击prev事件
+	$($bannerDirection.children()[0]).click( function(){
+		directionBack();
+	});
+	//点击next事件
+	$($bannerDirection.children()[1]).click(function(){
+		playGo();
+	});
+	//获取曲线图数据
+	monthData(urlMonth);
+	//获取饼图和柱状图数据
+	monthData(urlWeek);
+}
+//轮播方法
+function playGo(){
+	for(var j =0;j<$length;j++){
+		$($bannerContent[j]).css('display','none');
+		$($bannerList.children()[j]).removeClass('on');
+	}
+	if($length == current){
+		current = 0;
+	}
+	$($bannerContent[current]).css('display','block');
+	$($bannerList.children()[current]).addClass('on');
+	current++;
+}
+//轮播后退方法
+function directionBack(){
+	for(var j =0;j<$length;j++){
+		$($bannerContent[j]).css('display','none');
+		$($bannerList.children()[j]).removeClass('on');
+	}
+	if(current == 0){
+		current = $length;
+	}
+	$($bannerContent[current-1]).css('display','block');
+	$($bannerList.children()[current-1]).addClass('on');
+	current--;
+}
+
 //曲线图数据方法
 function pageviewsFunc(xAxis,series) {
 	var dom = document.getElementById("pageviews");
@@ -153,6 +247,7 @@ function pieRightFunc(xAxis,series) {
 	    myPieRight.setOption(optionPieRight, true);
 	}
 }
+//数据请求
 function monthData(url){
 	var url = url
 	$.ajax({
@@ -180,7 +275,3 @@ function monthData(url){
 	    }   
 	});
 }
-var urlMonth = 'https://edu.telking.com/api/?type=month';
-var urlWeek = 'https://edu.telking.com/api/?type=week';
-monthData(urlMonth);
-monthData(urlWeek);
